@@ -217,7 +217,7 @@ def plot_training_curves(history, args):
     plt.close()
     print(f"[+] Saved training curves to {plot_path}")
     
-    import argparse
+import argparse
 
 
 def parse_args():
