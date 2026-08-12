@@ -216,3 +216,47 @@ def plot_training_curves(history, args):
     plt.savefig(plot_path, dpi=300)
     plt.close()
     print(f"[+] Saved training curves to {plot_path}")
+    
+    import argparse
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Train segmentation models on MicroSeg"
+    )
+    parser.add_argument(
+        "--model_architecture",
+        type=str,
+        default="unet",
+        help="Architecture name (e.g., unet, attention_unet, segresnet)",
+    )
+    parser.add_argument(
+        "--epochs", type=int, default=25, help="Number of training epochs"
+    )
+    parser.add_argument(
+        "--batch_size", type=int, default=8, help="Batch size for dataloaders"
+    )
+    parser.add_argument(
+        "--learning_rate",
+        type=float,
+        default=1e-3,
+        help="Optimizer learning rate",
+    )
+    parser.add_argument(
+        "--ckpt_dir",
+        type=str,
+        default="./checkpoints",
+        help="Directory to save checkpoints and learning curves",
+    )
+    parser.add_argument(
+        "--data_dir",
+        type=str,
+        default="./data",
+        help="Directory containing data folder",
+    )
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    train(args)
